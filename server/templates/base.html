@@ -7,21 +7,43 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <!-- Font awesome css - for icons -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
-        {% if title %}
-            <title>{{ title }}</title>
-        {% else %}
-            <title>SAP Product Demo</title>
-        {% endif %}
+        <!-- {% if title %} -->
+            <!-- <title>{{ title }}</title> -->
+        <!-- {% else %} -->
+        <title>SAP Product Demo</title>
+        <!-- {% endif %} -->
     </head>
-    
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="{{ url_for('index') }}">SAP Product Demo</a>
+                    </div>
+                    <!-- <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Home</a></li>
+                    </ul> -->
+                    <div class="collapse navbar-collapse">
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link {{ 'active' if request.path == '/' or request.path == '/home' or request.path == '/index' }}" href="{{ url_for('index') }}">Home</a>
+                            <a class="nav-item nav-link {{ 'active' if request.path == '/products' }}" href="{{ url_for('products') }}">Products</a>
+                        </div>
+                        <div class="navbar-nav ml-auto">
+                            <a class="nav-item nav-link {{ 'active' if request.path == '/basket' }}" href="#"><i class="fa fa-shopping-basket"></i> Basket</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
-
         {% block content %}{% endblock %}
 
         <!-- Optional JavaScript - Allows Bootstrap to work -->

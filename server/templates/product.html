@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="container">
+        <div class="left-column">
+            <img class="active" src="{{ url_for('static', filename='assets/' + product.image) }}">
+        </div>
+    
+        <div class="right-column">
+    
+            <div class="product-details">
+                <a href="{{ url_for('products') }}"><span>Products</span></a>
+                <h1>{{ product.name }}</h1>
+                <h4>£{{ product.price }}</h4>
+            </div>
+            <div class="quantity-selector">
+                <label for="quantity">Select Quantity</label>
+                <button class="btn minus-btn disabled">-</button>
+                <input readonly type="text" id="quantity" value="1">
+                <button class="btn plus-btn">+</button>
+            </div>
+
+            <script>
+                document.querySelector(".minus-btn").setAttribute("disabled", "disabled");
+
+                var valueCount
+
+                // Getting unit price
+                var unitPrice = {{ product.price }}
+
+                // Price calculation
+                function priceTotal() {
+                    var total = valueCount * unitPrice;
+                    document.getElementById("totalPrice").innerText = total
+                }
+
+                // Minus button
+                document.querySelector(".minus-btn").addEventListener("click", function() {
+                    valueCount = document.getElementById("quantity").value;
+                    valueCount--;
+                    document.getElementById("quantity").value = valueCount
+
+                    if (valueCount == 1) {
+                        document.querySelector(".minus-btn").setAttribute("disabled", "disabled")
+                    }  
+                    if (valueCount < {{ quantity }}) {
+                        document.querySelector(".plus-btn").removeAttribute("disabled");
+                        document.querySelector(".plus-btn").classList.remove("disabled")
+                    }
+
+                    // Updating total price
+                    priceTotal()
+                })
+
+                // Plus button
+                document.querySelector(".plus-btn").addEventListener("click", function() {
+                    valueCount = document.getElementById("quantity").value;
+                    valueCount++;
+                    document.getElementById("quantity").value = valueCount
+
+                    if (valueCount > 1) {
+                        document.querySelector(".minus-btn").removeAttribute("disabled");
+                        document.querySelector(".minus-btn").classList.remove("disabled")
+                    }  
+                    if (valueCount == {{ quantity }}) {
+                        document.querySelector(".plus-btn").setAttribute("disabled", "disabled")
+                    }
+
+                    // Updating total price
+                    priceTotal()
+                })
+            </script>
+
+            <div class="product-pricing">
+                <span>£</span><span id="totalPrice">{{ product.price }}</span>
+                <a href="{{ url_for('add_to_basket', product_id=product.id) }}" class="cart-btn">Add to basket</a>
+            </div>
+
+            <div class="stock-details">
+                <h3>Number of items available: {{ quantity }}</h3>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
