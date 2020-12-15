@@ -1,8 +1,8 @@
 ---
 applications:
-- name: SAPTest
-  host: SAPTest
+- name: saptest
   path: .
   memory: 128M
-  random-route: true
+  routes:
+    - route: saptest-sc100620.cfapps.eu10.hana.ondemand.com
   command: python app.py
