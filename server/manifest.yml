@@ -1,0 +1,8 @@
+---
+applications:
+- name: SAPTest
+  host: SAPTest
+  path: .
+  memory: 128M
+  random-route: true
+  command: python app.py

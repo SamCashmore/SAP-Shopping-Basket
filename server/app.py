@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from api_requests import get_quantity_from_api
+from api_requests import get_quantity_from_api, post_reservation
 
 app = Flask(__name__)
 
