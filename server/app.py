@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from api_requests import get_quantity_from_api, post_reservation
 import os
 
@@ -37,19 +37,38 @@ def index():
 def products():
     return render_template('products.html', products = product_list)
 
-@app.route('/products/<product_id>')
+@app.route('/products/<product_id>', methods=['GET', 'POST'])
 def product(product_id):
-    product_item = next((product for product in product_list if product['id'] == product_id), None)
-    if product_item is not None:
-        quantity = get_quantity_from_api(product_item['id'])
-        return render_template('product.html', product = product_item, quantity = quantity)
+    if request.method == 'POST':
+        product_id = request.form.get('formProductId')
+        quantity = request.form.get('formQuantity')
+        postcode = request.form.get('formPostcode')
+        return product_id, quantity, postcode
     else:
-        return 'Product does not exist'
-    # Apply conditional for 'None' either here or in html
+        product_item = next((product for product in product_list if product['id'] == product_id), None)
+        if product_item is not None:
+            quantity = get_quantity_from_api(product_item['id'])
+            return render_template('product.html', product = product_item, quantity = quantity)
+        else:
+            return 'Product does not exist'
+        # Apply conditional for 'None' either here or in html
 
-@app.route('/add_to_basket/<product_id>')
+@app.route('/add_to_basket/<product_id>', methods=['GET', 'POST'])
 def add_to_basket(product_id):
     return 'Adds to basket - Use API...'
+
+@app.route('/reserve_products', methods=['POST'])
+def reserve_products():
+    product_id = request.form['formProductId']
+    quantity = request.form['formQuantity']
+    postcode = request.form['formPostcode']
+    result = post_reservation(product_id, quantity, postcode)
+    return jsonify(result)
+    # return {
+    #     'product_id': product_id,
+    #     'quantity': quantity,
+    #     'postcode': postcode
+    # }
 
 if __name__ == "__main__":
     app.run(debug=True)

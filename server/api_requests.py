@@ -162,4 +162,5 @@ def post_reservation(product_id, quantity, postcode):
     
     r = client.post(url, data=json.dumps(body), headers=headers)
     data = r.json()
-    return 'Product successfully reserved - Details', data
+    # return 'Product successfully reserved - Details', data
+    return data

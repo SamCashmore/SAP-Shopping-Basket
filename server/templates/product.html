@@ -34,20 +34,38 @@
                 <span>£</span><span id="totalPrice">{{ product.price }}</span>
                 <!-- <a href="{{ url_for('add_to_basket', product_id=product.id) }}" class="cart-btn">Add to basket</a> -->
                 <button class="cart-btn" data-toggle="modal" data-target="#reservationModal" onclick="updateModalQuantity()">Add to Basket</button>
+                <!-- Consider using bootstrap button classes for this? -->
             </div>
 
             <script src="{{ url_for('static', filename='js/productModal.js') }}"></script>
 
             <!-- Add to basket triggers bootstrap modal -->
             <div class="modal fade" id="reservationModal" role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header text-center">
                             <h4 class="modal-title">Reserve Products</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
+                        <div class="modal-header">
+                            <p>To reserve <var id="modalItemQuantity"></var> units of <var>{{ product.name }}</var> for 30 minutes, please enter your postcode:</p>
+                        </div>
                         <div class="modal-body">
-                            <p>Reserve <var id="modalItemQuantity"></var> units of <var>{{ product.name }}</var> for 30 minutes.</p>
+                            <!-- <form action="{{ url_for('add_to_basket', product_id=product.id) }}" method="POST" id="postcodeForm"> -->
+                            <form action="{{ url_for('reserve_products') }}" method="POST" id="postcodeForm">
+                            <!-- <form action="" method="POST" id="postcodeForm"> -->
+                                <div class="md-form">
+                                    <label for="postcode">Enter Postcode:</label>
+                                    <input type="text" class="form-control" name="formPostcode" id="formPostcode" placeholder="e.g. TW14 8HD">
+                                    <!-- Hidden form still editable in browser dev tools -->
+                                    <input type="hidden" name="formProductId" id="formProductId" value="{{ product.id }}">
+                                    <input type="hidden" name="formQuantity" id="formQuantity">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="reserveProducts" name="submitButton" form="postcodeForm" onclick="submitCommand()">Reserve Products</button>
                         </div>
                     </div>
                 </div>
