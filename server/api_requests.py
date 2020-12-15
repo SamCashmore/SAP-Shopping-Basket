@@ -105,7 +105,6 @@ def get_sourcing(product_id, quantity, postcode):
     token = auth()
 
     client = OAuth2Session(client_id, token=token)
-    # r = client.get(url)
     headers = {"Content-Type": "application/json"}
 
     # Calculate coords from postcode - UK only
@@ -131,7 +130,6 @@ def get_sourcing(product_id, quantity, postcode):
     return data["sourcings"][0][0]["scheduleLine"][0]["source"]
 
 def post_reservation(product_id, quantity, postcode):
-   
     '''
     Use sourcing info to reserve product for 30mins according to API
     '''
@@ -144,7 +142,6 @@ def post_reservation(product_id, quantity, postcode):
     token = auth()
 
     client = OAuth2Session(client_id, token=token)
-    # r = client.get(url)
     headers = {"Content-Type": "application/json"}
 
     body = [

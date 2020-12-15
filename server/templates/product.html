@@ -25,13 +25,32 @@
 
                 // Getting unit price
                 var unitPrice = {{ product.price }}
-                var quantity = {{ quantity }}
+                // Getting max quantity from API
+                var maxQuantity = {{ quantity }}
             </script>
             <script src="{{ url_for('static', filename='js/product.js') }}"></script>
 
             <div class="product-pricing">
                 <span>£</span><span id="totalPrice">{{ product.price }}</span>
-                <a href="{{ url_for('add_to_basket', product_id=product.id) }}" class="cart-btn">Add to basket</a>
+                <!-- <a href="{{ url_for('add_to_basket', product_id=product.id) }}" class="cart-btn">Add to basket</a> -->
+                <button class="cart-btn" data-toggle="modal" data-target="#reservationModal" onclick="updateModalQuantity()">Add to Basket</button>
+            </div>
+
+            <script src="{{ url_for('static', filename='js/productModal.js') }}"></script>
+
+            <!-- Add to basket triggers bootstrap modal -->
+            <div class="modal fade" id="reservationModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Reserve Products</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Reserve <var id="modalItemQuantity"></var> units of <var>{{ product.name }}</var> for 30 minutes.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="stock-details">

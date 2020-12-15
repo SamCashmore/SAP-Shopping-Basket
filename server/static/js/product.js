@@ -17,7 +17,7 @@ document.querySelector(".minus-btn").addEventListener("click", function() {
     if (valueCount == 1) {
         document.querySelector(".minus-btn").setAttribute("disabled", "disabled")
     }  
-    if (valueCount < quantity) {
+    if (valueCount < maxQuantity) {
         document.querySelector(".plus-btn").removeAttribute("disabled");
         document.querySelector(".plus-btn").classList.remove("disabled")
     }
@@ -36,7 +36,7 @@ document.querySelector(".plus-btn").addEventListener("click", function() {
         document.querySelector(".minus-btn").removeAttribute("disabled");
         document.querySelector(".minus-btn").classList.remove("disabled")
     }  
-    if (valueCount == quantity) {
+    if (valueCount == maxQuantity) {
         document.querySelector(".plus-btn").setAttribute("disabled", "disabled")
     }
 
