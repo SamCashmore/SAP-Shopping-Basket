@@ -2,8 +2,6 @@ from flask import Flask, request, render_template
 from api_requests import get_quantity_from_api, post_reservation
 import os
 
-# T Cashmore changes
-
 app = Flask(__name__)
 
 port = int(os.environ.get('PORT', 3000))
@@ -54,4 +52,5 @@ def add_to_basket(product_id):
     return 'Adds to basket - Use API...'
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
+    # app.run(host='0.0.0.0', port=port)
