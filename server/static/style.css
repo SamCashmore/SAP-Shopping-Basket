@@ -189,6 +189,74 @@ html, body {
     margin-bottom: 0;
 }
 
+.reservation-heading {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+
+.reservation-heading span {
+    font-size: 12px;
+    color: #358ED7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.reservation-heading h1 {
+    font-weight: 300;
+    font-size: 52px;
+    color: #43484D;
+    letter-spacing: -2px;
+}
+
+.reservation-heading h4 {
+    font-weight: 300;
+    font-size: 26px;
+    color: #86939E;
+    /* letter-spacing: -2px; */
+}
+
+.reservation-heading p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+}
+
+.reservation-details {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+    align-items: left;
+}
+
+.reservation-details h3 {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+.reservation-details h2 {
+    font-size: 22px;
+    font-weight: 300;
+    color: #43474D;
+    margin-right: 10px;
+}
+
+.reservation-details span {
+    font-size: 20px;
+    font-weight: 300;
+    color: #43474D;
+    margin-right: 10px;
+}
+
+.no-border {
+    border-bottom: none;
+}
+
 /* Responsive */
 @media (max-width: 940px) {
     .container {

@@ -8,9 +8,3 @@ function updateModalQuantity() {
     document.getElementById("formQuantity").value = quantityOfItems
     console.log(document.getElementById("formQuantity").value)
 }
-
-function submitCommand() {
-    console.log(document.getElementById("formQuantity").value)
-    console.log(document.getElementById("formProductId").value)
-    console.log(document.getElementById("formPostcode").value)
-}
