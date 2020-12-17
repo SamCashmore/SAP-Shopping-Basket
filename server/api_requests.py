@@ -105,7 +105,6 @@ def get_sourcing(product_id, quantity, postcode):
     token = auth()
 
     client = OAuth2Session(client_id, token=token)
-    # r = client.get(url)
     headers = {"Content-Type": "application/json"}
 
     # Calculate coords from postcode - UK only
@@ -130,10 +129,10 @@ def get_sourcing(product_id, quantity, postcode):
     data = r.json()
     return data["sourcings"][0][0]["scheduleLine"][0]["source"]
 
-def post_reservation(product_id, quantity, postcode):
-   
+def post_reservation(product_id, quantity, postcode='TW14 8HD'):
     '''
     Use sourcing info to reserve product for 30mins according to API
+    Includes default postcode, SAP CHP
     '''
     client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
 
@@ -144,7 +143,6 @@ def post_reservation(product_id, quantity, postcode):
     token = auth()
 
     client = OAuth2Session(client_id, token=token)
-    # r = client.get(url)
     headers = {"Content-Type": "application/json"}
 
     body = [
@@ -165,4 +163,12 @@ def post_reservation(product_id, quantity, postcode):
     
     r = client.post(url, data=json.dumps(body), headers=headers)
     data = r.json()
-    return 'Product successfully reserved - Details', data
+    # return 'Product successfully reserved - Details', data
+    return {
+        'productId': data[0]['items'][0]['productId'],
+        'quantity': int(data[0]['items'][0]['scheduleLine'][0]['quantity']),
+        'source': {
+            'sourceId': data[0]['items'][0]['scheduleLine'][0]['source']['sourceId'],
+            'sourceType': data[0]['items'][0]['scheduleLine'][0]['source']['sourceType']
+        }
+    }

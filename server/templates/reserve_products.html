@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="container">
+        <div class="left-column">
+            <img class="active" src="{{ url_for('static', filename='assets/' + product.image) }}">
+        </div>
+
+        <div class="right-column">
+
+            <div class="reservation-heading">
+                <!-- CSS - make like product-details -->
+                <a href="{{ url_for('product', product_id=product.id) }}"><span>{{ product.name }}</span></a>
+                <h1>Reservation Details</h1>
+                <h4>Reservation is confirmed</h4>
+            </div>
+            <div class="reservation-details">
+                <h3>Product ID: <span>{{ reservation_details.productId }}</span></h3>
+                <h3>Quantity: <span>{{ reservation_details.quantity }}</span></h3>
+                <h3>Total Price: <span id="totalPrice"></span></h3>
+            </div>
+            <div class="reservation-details no-border">
+                <!-- <h2>Source Info</h2> -->
+                <h3>Source ID: <span>{{ reservation_details.source.sourceId }}</span></h3>
+                <h3>Source Type: <span>{{ reservation_details.source.sourceType }}</span></h3>
+            </div>
+
+            <script>
+                // var quantity = {{ reservation_details.quantity }}
+                var unitPrice = {{ product.price }}
+                var quantity = {{ reservation_details.quantity }}
+            </script>
+            <script src="{{ url_for('static', filename='js/reserveProducts.js') }}"></script>
+   
+        </div>
+    </main>
+{% endblock %}

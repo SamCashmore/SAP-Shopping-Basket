@@ -5,4 +5,5 @@ applications:
   memory: 128M
   routes:
     - route: saptest-sc100620.cfapps.eu10.hana.ondemand.com
+  buildpack: python_buildpack
   command: python app.py
