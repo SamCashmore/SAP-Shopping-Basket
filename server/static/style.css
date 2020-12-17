@@ -28,6 +28,10 @@ html, body {
     background-blend-mode: multiply;
 }
 
+.navbar-dark {
+    background-color: black !important;
+}
+
 .grid-collection {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -115,6 +119,7 @@ html, body {
 .home-header {
     display: flex;
     background-color: white;
+    color: black;
     width: 100%;
     height: 100px;
     margin: 0 auto;
@@ -200,7 +205,7 @@ html, body {
 .product-details h1 {
     font-weight: 300;
     font-size: 52px;
-    color: #43484D;
+    color: black;
     letter-spacing: -2px;
 }
 
@@ -227,17 +232,27 @@ html, body {
 .quantity-selector label {
     font-size: 20px;
     font-weight: 300;
-    color: #43474D;
+    color: black;
     margin-right: 10px;
  }
 
 .quantity-selector button {
     width: 45px;
     height: 45px;
-    color: #FFFFFF;
+    color: white;
     border-radius: 0;
-    background-color: #343a40;
+    background-color: black;
+    border: 1px solid black;
     transition: all .2s;
+}
+
+.quantity-selector button:hover {
+    color: white;
+}
+
+.quantity-selector button:hover:not([disabled]) {
+    background-color: #343a40ec;
+    border: 1px solid #343a40ec;
 }
 
 .minus-btn {
@@ -252,27 +267,26 @@ html, body {
 
 .quantity-selector input {
     border: none;
-    border-top: 1px solid #343a40;
-    border-bottom: 1px solid #343a40;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     text-align: center;
     width: 50px;
     height: 45px;
     font-size: 20px;
-    color: #43474D;
+    color: black;
     font-weight: 300;
 }
 
 .product-pricing {
     display: flex;
     align-items: center;
-    /* border-bottom: 1px solid #E1E8EE; */
     margin-bottom: 40px;
 }
 
 .product-pricing span {
     font-size: 26px;
     font-weight: 300;
-    color: #43474D;
+    color: black;
     margin-right: 5px;
 }
 
@@ -282,17 +296,18 @@ html, body {
 
 .cart-btn {
     display: inline-block;
-    background-color: #343a40;
+    background-color: black;
     border-radius: 6px;
+    border: none;
     font-size: 16px;
     color: #FFFFFF;
     text-decoration: none;
     padding: 12px 30px;
-    transition: all .5s;
+    transition: all .2s;
 }
 
 .cart-btn:hover {
-    background-color: #343a4048;
+    background-color: #343a40ec;
 }
 
 .stock-details {
@@ -330,7 +345,7 @@ html, body {
 .reservation-heading h1 {
     font-weight: 300;
     font-size: 52px;
-    color: #43484D;
+    color: black;
     letter-spacing: -2px;
 }
 
@@ -367,14 +382,14 @@ html, body {
 .reservation-details h2 {
     font-size: 22px;
     font-weight: 300;
-    color: #43474D;
+    color: black;
     margin-right: 10px;
 }
 
 .reservation-details span {
     font-size: 20px;
     font-weight: 300;
-    color: #43474D;
+    color: black;
     margin-right: 10px;
 }
 

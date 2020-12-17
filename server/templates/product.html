@@ -32,7 +32,6 @@
 
             <div class="product-pricing">
                 <span>£</span><span id="totalPrice">{{ product.price }}</span>
-                <!-- <a href="{{ url_for('add_to_basket', product_id=product.id) }}" class="cart-btn">Add to basket</a> -->
                 <button class="cart-btn" data-toggle="modal" data-target="#reservationModal" onclick="updateModalQuantity()">Add to Basket</button>
                 <!-- Consider using bootstrap button classes for this? -->
             </div>
