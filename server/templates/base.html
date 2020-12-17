@@ -24,23 +24,16 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="{{ url_for('index') }}">
-                            <img src="{{ url_for('static', filename='assets/dysonlogo.jpeg') }}" height="30">
+                            <img src="{{ url_for('static', filename='assets/dysonlogo.svg') }}">
                         </a>
                     </div>
-                    <!-- <ul class="nav navbar-nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Products</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Home</a></li>
-                    </ul> -->
                     <div class="collapse navbar-collapse">
                         <div class="navbar-nav">
                             <a class="nav-item nav-link {{ 'active' if request.path == '/' or request.path == '/home' or request.path == '/index' }}" href="{{ url_for('index') }}">Home</a>
                             <a class="nav-item nav-link {{ 'active' if request.path == '/products' }}" href="{{ url_for('products') }}">Products</a>
                         </div>
                         <div class="navbar-nav ml-auto">
-                            <a class="nav-item nav-link {{ 'active' if request.path == '/basket' }}" href="#"><i class="fa fa-shopping-basket"></i> Basket</a>
+                            <a class="nav-item nav-link {{ 'active' if request.path == '/reservations' }}" href="#"><i class="fa fa-shopping-basket"></i> Reservations</a>
                         </div>
                     </div>
                 </div>
