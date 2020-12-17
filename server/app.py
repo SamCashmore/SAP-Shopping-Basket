@@ -62,18 +62,18 @@ def reserve_products():
     product_id = request.form['formProductId']
     quantity = request.form['formQuantity']
     postcode = request.form['formPostcode']
-    # result = post_reservation(product_id, quantity, postcode)
-    result_test = {
-        'productId': 'DYSON-248F-TORQUE-IR',
-        'quantity': 1,
-        'source': {
-            'sourceId': '123',
-            'sourceType': 'STORE'
-        }
-    }
+    result = post_reservation(product_id, quantity, postcode)
+    # result = {
+    #     'productId': 'DYSON-248F-TORQUE-IR',
+    #     'quantity': 1,
+    #     'source': {
+    #         'sourceId': '123',
+    #         'sourceType': 'STORE'
+    #     }
+    # }
     product_item = next((product for product in product_list if product['id'] == product_id), None)
     if product_item is not None:
-        return render_template('reserve_products.html', product=product_item, reservation_details=result_test)
+        return render_template('reserve_products.html', product=product_item, reservation_details=result)
     else:
         return 'Error reserving product'
 
