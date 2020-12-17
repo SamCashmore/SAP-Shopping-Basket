@@ -1,8 +1,31 @@
+@font-face {
+    font-family: 'DysonFutura-Book';
+    src: url('fonts/DysonFutura-Book.woff');
+}
+
+@font-face {
+    font-family: 'DysonFutura-Light';
+    src: url('fonts/DysonFutura-Light.woff');
+}
+
+@font-face {
+    font-family: 'DysonFutura-Medium';
+    src: url('fonts/DysonFutura-Medium.woff');
+}
+
 html, body {
     height: 100%;
     width: 100%;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'DysonFutura-Light';
+    /* font-weight: lighter; */
+}
+
+.navbar-brand img {
+    max-height: 100%;
+    max-width: 100%;
+    height: 30px;
+    background-blend-mode: multiply;
 }
 
 .grid-collection {
