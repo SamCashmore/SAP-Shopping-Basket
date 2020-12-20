@@ -87,7 +87,8 @@ def reservations():
         if product['id'] in reservations_dict:
             product['reservations'] = reservations_dict[product['id']]
             reserved_products.append(product)
-    return jsonify(reserved_products)
+    # return jsonify(reserved_products)
+    return render_template('reservations.html', reserved_products=reserved_products)
 
 
 if __name__ == "__main__":

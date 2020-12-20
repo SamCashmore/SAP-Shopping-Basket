@@ -295,7 +295,6 @@ html, body {
     font-weight: 300;
     font-size: 26px;
     color: #86939E;
-    /* letter-spacing: -2px; */
 }
 
 .product-details p {
@@ -477,6 +476,72 @@ html, body {
 
 .no-border {
     border-bottom: none;
+}
+
+.reservations-header {
+    margin-left: 10%;
+    margin-top: 10px;
+    margin-right: 10%;
+}
+
+.reservations-header h1 {
+    font-family: 'DysonFutura-Medium';
+}
+
+.reservations-header span {
+    font-style: italic;
+}
+
+.vertical-flex {
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 25px;
+    /* Remove border when done */
+    border-top: 1px solid black;
+}
+
+.horizontal-flex {
+    display: flex;
+}
+
+.reservations-left-column {
+    width: 60%;
+    position: relative;
+    /* Remove border when done */
+    border-right: 1px solid black;
+}
+
+.reservations-left-column img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+    height: auto;
+}
+
+.reservations-right-column {
+    width: 40%;
+}
+
+.reservations-info { 
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+
+.reservations-info h1 {
+    font-weight: 300;
+    font-size: 52px;
+    color: black;
+    letter-spacing: -2px;
+}
+
+.reservations-info h4 {
+    font-weight: 300;
+    font-size: 26px;
+    color: #86939E;
 }
 
 /* Responsive */
