@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify
-from api_requests import get_quantity_from_api, post_reservation
+from api_requests import get_quantity_from_api, post_reservation, get_reservations
 import os
 
 app = Flask(__name__)
@@ -78,6 +78,17 @@ def reserve_products():
         return render_template('reserve_products.html', product=product_item, reservation_details=result)
     else:
         return 'Error reserving product'
+
+@app.route('/reservations')
+def reservations():
+    reservations_dict = get_reservations()
+    reserved_products = []
+    for product in product_list:
+        if product['id'] in reservations_dict:
+            product['reservations'] = reservations_dict[product['id']]
+            reserved_products.append(product)
+    return jsonify(reserved_products)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
