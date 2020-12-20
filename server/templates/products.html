@@ -8,18 +8,23 @@
     <div class="grid-collection">
         {% for product in products %}
             <div class="grid-product container-vertical">
-                <div class="grid-product-image">
-                    <a href="{{ url_for('product', product_id=product.id) }}">
-                        <!-- Maybe add some sort of whitespace to keep this all the same size -->
-                        {% if product.products_image is defined %}
-                            <img src="{{ url_for('static', filename='assets/' + product.id + '/' + product.products_image) }}" alt="">
-                        {% else %}
-                            <img src="{{ url_for('static', filename='assets/' + product.id + '/' + product.image) }}" alt="">
-                        {% endif %}
-                    </a>
+                <div class="grid-product-image-section">
+                    <div class="grid-product-image-logo">
+                        <img src="{{ url_for('static', filename='assets/' + product.id + '/logo.png') }}" alt="">
+                    </div>
+                    <div class="grid-product-image">
+                        <a href="{{ url_for('product', product_id=product.id) }}">
+                            <!-- Maybe add some sort of whitespace to keep this all the same size -->
+                            {% if product.products_image is defined %}
+                                <img src="{{ url_for('static', filename='assets/' + product.id + '/' + product.products_image) }}" alt="">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='assets/' + product.id + '/' + product.image) }}" alt="">
+                            {% endif %}
+                        </a>
+                    </div>
                 </div>
                 <div class="grid-product-details">
-                    <img src="{{ url_for('static', filename='assets/' + product.id + '/logo.png') }}" class="products-logo" alt="">
+                    <h2>{{ product.name }}</h2>
                     <div class="grid-product-shop-now">
                         <a href="{{ url_for('product', product_id=product.id) }}" class="btn btn-arrow">
                             <span>
