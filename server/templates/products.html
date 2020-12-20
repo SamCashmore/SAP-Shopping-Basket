@@ -5,7 +5,7 @@
 {% for product in products %}
         <div class="grid-product">
             <a href="{{ url_for('product', product_id=product.id) }}">
-                <img class="grid-product-image" src="{{ url_for('static', filename='assets/' + product.image) }}">
+                <img class="grid-product-image" src="{{ url_for('static', filename='assets/' + product.id + '/' + product.image) }}">
             </a>
             <h5><a href="{{ url_for('product', product_id=product.id) }}">{{ product.name }}</a></h5>
             <h6>£{{ product.price }}</h6>

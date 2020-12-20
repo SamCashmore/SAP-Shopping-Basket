@@ -10,19 +10,19 @@ product_list = [
         {
             'id': 'DYSON-248F-TORQUE-IR',
             'name': 'Dyson V11',
-            'price': 100,
+            'price': 549,
             'image': 'image1.jpg'
         },
         {
-            'id': 2,
+            'id': '2',
             'name': 'Dyson Big Ball Multi Floor 2 vacuum',
-            'price': 150,
+            'price': 249,
             'image': 'image2.jpeg'
         },
         {
-            'id': 3,
+            'id': '3',
             'name': 'Dyson 360 Heurist',
-            'price': 150,
+            'price': 799.99,
             'image': 'image3.jpeg'
         }
     ]
