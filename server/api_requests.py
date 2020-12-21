@@ -224,32 +224,57 @@ def get_reservations():
 
 # print(json.dumps(get_reservation(), indent=2))
 
-# {
-#   "DYSON-248F-TORQUE-IR": [
-#     {
-#       "reservationId": "4ba8ab91-76d7-4476-bcfe-62feeba3c911",
-#       "quantity": 1.0,
-#       "sourceId": "abc123",
-#       "sourceType": "STORE",
-#       "reservationTime": "2020-12-15T10:40:26.174Z",
-#       "expiryTime": "2020-12-22T10:40:26.174Z"
-#     },
-#     {
-#       "reservationId": "cfc999d4-13f0-499d-832e-90e250a36fb7",
-#       "quantity": 3.0,
-#       "sourceId": "abc123",
-#       "sourceType": "STORE",
-#       "reservationTime": "2020-12-20T18:12:31.606Z",
-#       "expiryTime": "2020-12-20T18:42:31.606Z"
-#     },
-#     {
-#       "reservationId": "5527cf57-3b70-45e5-916c-3be221e27dbf",
-#       "quantity": 2.0,
-#       "sourceId": "abc123",
-#       "sourceType": "STORE",
-#       "reservationTime": "2020-12-20T18:12:50.519Z",
-#       "expiryTime": "2020-12-20T18:42:50.519Z"
-#     }
-#   ],
-
-# }
+test_data = {
+  "DYSON-248F-TORQUE-IR": [
+    {
+      "reservationId": "4ba8ab91-76d7-4476-bcfe-62feeba3c911",
+      "quantity": 1.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-15T10:40:26.174Z",
+      "expiryTime": "2020-12-22T10:40:26.174Z"
+    },
+    {
+      "reservationId": "cfc999d4-13f0-499d-832e-90e250a36fb7",
+      "quantity": 3.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:31.606Z",
+      "expiryTime": "2020-12-20T18:42:31.606Z"
+    },
+    {
+      "reservationId": "5527cf57-3b70-45e5-916c-3be221e27dbf",
+      "quantity": 2.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:50.519Z",
+      "expiryTime": "2020-12-20T18:42:50.519Z"
+    }
+  ],
+  "2": [
+    {
+      "reservationId": "4ba8ab91-76d7-4476-bcfe-62feeba3c911",
+      "quantity": 1.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-15T10:40:26.174Z",
+      "expiryTime": "2020-12-22T10:40:26.174Z"
+    },
+    {
+      "reservationId": "cfc999d4-13f0-499d-832e-90e250a36fb7",
+      "quantity": 3.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:31.606Z",
+      "expiryTime": "2020-12-20T18:42:31.606Z"
+    },
+    {
+      "reservationId": "5527cf57-3b70-45e5-916c-3be221e27dbf",
+      "quantity": 2.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:50.519Z",
+      "expiryTime": "2020-12-20T18:42:50.519Z"
+    }
+  ],
+}

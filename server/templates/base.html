@@ -35,7 +35,7 @@
                             <a class="nav-item nav-link {{ 'active' if request.path == '/products' }}" href="{{ url_for('products') }}">Products</a>
                         </div>
                         <div class="navbar-nav ml-auto">
-                            <a class="nav-item nav-link {{ 'active' if request.path == '/reservations' }}" href="#"><i class="fa fa-shopping-basket"></i> Reservations</a>
+                            <a class="nav-item nav-link {{ 'active' if request.path == '/reservations' }}" href="{{ url_for('reservations') }}"><i class="fa fa-shopping-basket"></i> Reservations</a>
                         </div>
                     </div>
                 </div>
