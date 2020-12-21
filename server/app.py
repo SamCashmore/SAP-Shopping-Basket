@@ -49,7 +49,10 @@ def product(product_id):
     else:
         product_item = next((product for product in product_list if product['id'] == product_id), None)
         if product_item is not None:
-            quantity = get_quantity_from_api(product_item['id'])
+            try:
+                quantity = get_quantity_from_api(product_item['id'])
+            except:
+                quantity = 0
             return render_template('product.html', product = product_item, quantity = quantity)
         else:
             return 'Product does not exist'
@@ -64,20 +67,17 @@ def reserve_products():
     product_id = request.form['formProductId']
     quantity = request.form['formQuantity']
     postcode = request.form['formPostcode']
-    result = post_reservation(product_id, quantity, postcode)
-    # result = {
-    #     'productId': 'DYSON-248F-TORQUE-IR',
-    #     'quantity': 1,
-    #     'source': {
-    #         'sourceId': '123',
-    #         'sourceType': 'STORE'
-    #     }
-    # }
+    try:
+        result = post_reservation(product_id, quantity, postcode)
+    except:
+        result = None
+        print('ERRORS')
     product_item = next((product for product in product_list if product['id'] == product_id), None)
-    if product_item is not None:
+    if product_item is not None and result is not None:
         return render_template('reserve_products.html', product=product_item, reservation_details=result)
     else:
-        return 'Error reserving product'
+        print('Error reserving product')
+        return render_template('errorPages/reserve_products.html')
 
 test_data = {
   "DYSON-248F-TORQUE-IR": [

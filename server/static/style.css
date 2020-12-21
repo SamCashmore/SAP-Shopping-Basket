@@ -381,14 +381,15 @@ html, body {
     border-radius: 6px;
     border: none;
     font-size: 16px;
-    color: #FFFFFF;
+    color: white !important;
     text-decoration: none;
     padding: 12px 30px;
     transition: all .2s;
 }
 
-.cart-btn:hover {
+.cart-btn:hover:not([disabled]) {
     background-color: #343a40ec;
+    color: white;
 }
 
 .stock-details {
