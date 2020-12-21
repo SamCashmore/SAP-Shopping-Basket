@@ -482,6 +482,8 @@ html, body {
     margin-left: 10%;
     margin-top: 10px;
     margin-right: 10%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E1E8EE
 }
 
 .reservations-header h1 {
@@ -498,9 +500,7 @@ html, body {
     flex-direction: column;
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 25px;
-    /* Remove border when done */
-    /* border-top: 1px solid black; */
+    /* margin-top: 25px; */
 }
 
 .whitespace-bottom {
