@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify
-from api_requests import get_quantity_from_api, post_reservation
+from api_requests import get_quantity_from_api, post_reservation, get_reservations
 import os
 
 app = Flask(__name__)
@@ -79,6 +79,82 @@ def reserve_products():
     else:
         return 'Error reserving product'
 
+test_data = {
+  "DYSON-248F-TORQUE-IR": [
+    {
+      "reservationId": "4ba8ab91-76d7-4476-bcfe-62feeba3c911",
+      "quantity": 1.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-15T10:40:26.174Z",
+      "expiryTime": "2020-12-22T10:40:26.174Z"
+    },
+    {
+      "reservationId": "cfc999d4-13f0-499d-832e-90e250a36fb7",
+      "quantity": 3.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:31.606Z",
+      "expiryTime": "2020-12-20T18:42:31.606Z"
+    },
+    {
+      "reservationId": "5527cf57-3b70-45e5-916c-3be221e27dbf",
+      "quantity": 2.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:50.519Z",
+      "expiryTime": "2020-12-20T18:42:50.519Z"
+    }
+  ],
+  "2": [
+    {
+      "reservationId": "4ba8ab91-76d7-4476-bcfe-62feeba3c911",
+      "quantity": 1.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-15T10:40:26.174Z",
+      "expiryTime": "2020-12-22T10:40:26.174Z"
+    },
+    {
+      "reservationId": "cfc999d4-13f0-499d-832e-90e250a36fb7",
+      "quantity": 3.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:31.606Z",
+      "expiryTime": "2020-12-20T18:42:31.606Z"
+    },
+    {
+      "reservationId": "5527cf57-3b70-45e5-916c-3be221e27dbf",
+      "quantity": 2.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:50.519Z",
+      "expiryTime": "2020-12-20T18:42:50.519Z"
+    }
+  ],
+}
+
+@app.route('/reservations')
+def reservations():
+    # reservations_dict = get_reservations()
+    reservations_dict = test_data
+    reserved_products = []
+    for product in product_list:
+        if product['id'] in reservations_dict:
+            product['reservations'] = reservations_dict[product['id']]
+            reserved_products.append(product)
+    return render_template('reservations.html', reserved_products=reserved_products)
+
+@app.route('/reservations2')
+def reservations2():
+    reservations_dict = get_reservations()
+    reserved_products = []
+    for product in product_list:
+        if product['id'] in reservations_dict:
+            product['reservations'] = reservations_dict[product['id']]
+            reserved_products.append(product)
+    return jsonify(reserved_products)
+
 if __name__ == "__main__":
-    app.run(debug=True)
-#     app.run(host='0.0.0.0', port=port)
+    # app.run(debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)

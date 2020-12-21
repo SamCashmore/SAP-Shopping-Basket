@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container whitespace-bottom">
+    <div class="reservations-header">
+        <h1>Reservations</h1>
+        <h3>List of all reservations, taken from <span>/reservations</span> API</h3>
+        <h3>Reservations organised by product</h3>
+    </div>
+    <div class="vertical-flex">
+        {% for product in reserved_products %}
+            <div class="horizontal-flex">                
+                <div class="reservations-left-column">
+                    {% if product.products_image is defined %}
+                        <img src="{{ url_for('static', filename='assets/' + product.id + '/' + product.products_image) }}" alt="">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='assets/' + product.id + '/' + product.image) }}" alt="">
+                    {% endif %}
+                </div>
+                <div class="reservations-right-column">
+                    <div class="reservations-info-header">
+                        <h1>{{ product.name }}</h1>
+                        <h4>Reservations List:</h4>
+                    </div>
+                    {% for reservation in product.reservations  %}
+                    <div class="reservations-info-details {{ 'no-border' if loop.index == loop.length }}">
+                        <h3>Reservation ID: <span>{{ reservation.reservationId }}</span></h3>
+                        <h3>Quantity: <span>{{ reservation.quantity }}</span></h3>
+                        <h3>Reservation Time: <span>{{ reservation.reservationTime }}</span></h3>
+                        <h3>Expiry Time: <span>{{ reservation.expiryTime }}</span></h3>
+                        <h3>Source ID: <span>{{ reservation.sourceId }}</span></h3>
+                        <h3>Source Type: <span>{{ reservation.sourceType }}</span></h3>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

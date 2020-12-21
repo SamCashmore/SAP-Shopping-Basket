@@ -172,3 +172,109 @@ def post_reservation(product_id, quantity, postcode='TW14 8HD'):
             'sourceType': data[0]['items'][0]['scheduleLine'][0]['source']['sourceType']
         }
     }
+
+def get_reservations():
+    '''
+    Use sourcing info to get list of all reservations
+    '''
+    client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
+
+    base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
+    extension_url = '/reservations'
+    url = base_url + extension_url
+
+    token = auth()
+
+    client = OAuth2Session(client_id, token=token)    
+    r = client.get(url)
+    data = r.json()
+
+    # This method of rearranging the output by productID can probably be made more efficient
+
+    # Is possible to create 1 reservation for multiple items, but way my app is set up does not allow for this
+    # May be worth accounting for it for error handling
+
+    # reservations = {
+    #     'dyson...': [
+    #         {
+    #             'resid': 123,
+    #             'source': 'abc',
+    #             ...
+    #         }
+    #     ]
+    # }
+
+    reservations = {}
+
+    for reservation in data:
+        productId = reservation['items'][0]['productId']
+        reservation_details = {
+                'reservationId': reservation['reservationId'],
+                'quantity': reservation['items'][0]['scheduleLine'][0]['quantity'],
+                'sourceId' : reservation['items'][0]['scheduleLine'][0]['source']['sourceId'],
+                'sourceType' : reservation['items'][0]['scheduleLine'][0]['source']['sourceType'],
+                'reservationTime': reservation['changedAt'],
+                'expiryTime': reservation['expiresAt']
+            }
+        if productId in reservations:
+            reservations[productId].append(reservation_details)
+        else:
+            reservations[productId] = [reservation_details]
+    return reservations
+
+# print(json.dumps(get_reservation(), indent=2))
+
+test_data = {
+  "DYSON-248F-TORQUE-IR": [
+    {
+      "reservationId": "4ba8ab91-76d7-4476-bcfe-62feeba3c911",
+      "quantity": 1.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-15T10:40:26.174Z",
+      "expiryTime": "2020-12-22T10:40:26.174Z"
+    },
+    {
+      "reservationId": "cfc999d4-13f0-499d-832e-90e250a36fb7",
+      "quantity": 3.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:31.606Z",
+      "expiryTime": "2020-12-20T18:42:31.606Z"
+    },
+    {
+      "reservationId": "5527cf57-3b70-45e5-916c-3be221e27dbf",
+      "quantity": 2.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:50.519Z",
+      "expiryTime": "2020-12-20T18:42:50.519Z"
+    }
+  ],
+  "2": [
+    {
+      "reservationId": "4ba8ab91-76d7-4476-bcfe-62feeba3c911",
+      "quantity": 1.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-15T10:40:26.174Z",
+      "expiryTime": "2020-12-22T10:40:26.174Z"
+    },
+    {
+      "reservationId": "cfc999d4-13f0-499d-832e-90e250a36fb7",
+      "quantity": 3.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:31.606Z",
+      "expiryTime": "2020-12-20T18:42:31.606Z"
+    },
+    {
+      "reservationId": "5527cf57-3b70-45e5-916c-3be221e27dbf",
+      "quantity": 2.0,
+      "sourceId": "abc123",
+      "sourceType": "STORE",
+      "reservationTime": "2020-12-20T18:12:50.519Z",
+      "expiryTime": "2020-12-20T18:42:50.519Z"
+    }
+  ],
+}
