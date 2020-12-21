@@ -50,7 +50,7 @@
                         </div>
                         <div class="modal-body">
                             <!-- <form action="{{ url_for('add_to_basket', product_id=product.id) }}" method="POST" id="postcodeForm"> -->
-                            <form action="{{ url_for('reserve_products') }}" method="POST" id="postcodeForm">
+                            <form action="{{ url_for('reserve_products') }}" method="POST" id="postcodeForm" name="postcodeForm" onsubmit="return validateForm()">
                             <!-- <form action="" method="POST" id="postcodeForm"> -->
                                 <div class="md-form">
                                     <label for="postcode">Enter Postcode:</label>
