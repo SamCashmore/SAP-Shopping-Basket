@@ -3,7 +3,6 @@ from requests_oauthlib import OAuth2Session
 import base64
 import requests
 import json
-from dotenv import load_dotenv
 from os import environ, path
 
 '''

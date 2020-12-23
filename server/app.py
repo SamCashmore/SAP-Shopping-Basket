@@ -5,8 +5,6 @@ import os
 app = Flask(__name__)
 app.config.from_object('config.DevConfig')
 
-port = int(os.environ.get('PORT', 3000))
-
 product_list = [
         {
             'id': 'DYSON-248F-TORQUE-IR',
@@ -157,5 +155,5 @@ def reservations2():
     return jsonify(reserved_products)
 
 if __name__ == "__main__":
-    # app.run(debug=True)
-    app.run(host='0.0.0.0', port=port, debug=True)
+    port = int(os.environ.get('PORT', 3000))
+    app.run(host='0.0.0.0', port=port)

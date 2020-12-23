@@ -3,3 +3,4 @@ applications:
  - name: SAPDysonTest
    random-route: true
    memory: 128M
+   buildpack: python_buildpack
