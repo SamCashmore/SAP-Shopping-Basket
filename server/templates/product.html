@@ -3,7 +3,7 @@
 {% block content %}
     <main class="container sub-container">
         <div class="left-column">
-            <img class="active" src="{{ url_for('static', filename='assets/' + product.image) }}">
+            <img class="active" src="{{ url_for('static', filename='assets/' + product.id + '/' + product.image) }}">
         </div>
     
         <div class="right-column">
@@ -19,6 +19,11 @@
                 <input readonly type="text" id="quantity" value="1">
                 <button class="btn plus-btn">+</button>
             </div>
+            <div class="product-pricing">
+                <span>£</span><span id="totalPrice">{{ product.price }}</span>
+                <button class="btn cart-btn" data-toggle="modal" data-target="#reservationModal" onclick="updateModalQuantity()">Add to Basket</button>
+                <!-- Consider using bootstrap button classes for this? -->
+            </div>
 
             <script>
                 // Defining variables using Jinja before loading script
@@ -29,12 +34,6 @@
                 var maxQuantity = {{ quantity }}
             </script>
             <script src="{{ url_for('static', filename='js/product.js') }}"></script>
-
-            <div class="product-pricing">
-                <span>£</span><span id="totalPrice">{{ product.price }}</span>
-                <button class="cart-btn" data-toggle="modal" data-target="#reservationModal" onclick="updateModalQuantity()">Add to Basket</button>
-                <!-- Consider using bootstrap button classes for this? -->
-            </div>
 
             <script src="{{ url_for('static', filename='js/productModal.js') }}"></script>
 
@@ -51,11 +50,11 @@
                         </div>
                         <div class="modal-body">
                             <!-- <form action="{{ url_for('add_to_basket', product_id=product.id) }}" method="POST" id="postcodeForm"> -->
-                            <form action="{{ url_for('reserve_products') }}" method="POST" id="postcodeForm">
+                            <form action="{{ url_for('reserve_products') }}" method="POST" id="postcodeForm" name="postcodeForm" onsubmit="return validateForm()">
                             <!-- <form action="" method="POST" id="postcodeForm"> -->
                                 <div class="md-form">
                                     <label for="postcode">Enter Postcode:</label>
-                                    <input type="text" class="form-control" name="formPostcode" id="formPostcode" placeholder="e.g. TW14 8HD">
+                                    <input type="text" class="form-control postcode-field" name="formPostcode" id="formPostcode" placeholder="e.g. TW14 8HD" required>
                                     <!-- Hidden form still editable in browser dev tools -->
                                     <input type="hidden" name="formProductId" id="formProductId" value="{{ product.id }}">
                                     <input type="hidden" name="formQuantity" id="formQuantity">

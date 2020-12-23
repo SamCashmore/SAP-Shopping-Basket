@@ -172,3 +172,55 @@ def post_reservation(product_id, quantity, postcode='TW14 8HD'):
             'sourceType': data[0]['items'][0]['scheduleLine'][0]['source']['sourceType']
         }
     }
+
+def get_reservations():
+    '''
+    Use sourcing info to get list of all reservations
+    '''
+    client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
+
+    base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
+    extension_url = '/reservations'
+    url = base_url + extension_url
+
+    token = auth()
+
+    client = OAuth2Session(client_id, token=token)    
+    r = client.get(url)
+    data = r.json()
+
+    # This method of rearranging the output by productID can probably be made more efficient
+
+    # Is possible to create 1 reservation for multiple items, but way my app is set up does not allow for this
+    # May be worth accounting for it for error handling
+
+    # reservations = {
+    #     'dyson...': [
+    #         {
+    #             'resid': 123,
+    #             'source': 'abc',
+    #             ...
+    #         }
+    #     ]
+    # }
+
+    reservations = {}
+
+    for reservation in data:
+        productId = reservation['items'][0]['productId']
+        reservation_details = {
+                'reservationId': reservation['reservationId'],
+                'quantity': reservation['items'][0]['scheduleLine'][0]['quantity'],
+                'sourceId' : reservation['items'][0]['scheduleLine'][0]['source']['sourceId'],
+                'sourceType' : reservation['items'][0]['scheduleLine'][0]['source']['sourceType'],
+                'reservationTime': reservation['changedAt'],
+                'expiryTime': reservation['expiresAt']
+            }
+        if productId in reservations:
+            reservations[productId].append(reservation_details)
+        else:
+            reservations[productId] = [reservation_details]
+    return reservations
+
+
+# print(get_quantity_from_api('1'))
