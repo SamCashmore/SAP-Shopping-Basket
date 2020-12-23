@@ -3,11 +3,16 @@ from requests_oauthlib import OAuth2Session
 import base64
 import requests
 import json
+from dotenv import load_dotenv
+from os import environ, path
 
 '''
 File getting data from API using OAuth2 authentication
 https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html
 '''
+
+basedir = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(basedir, '.env'))
 
 def auth():
     '''
@@ -16,7 +21,8 @@ def auth():
     '''
 
     client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
-    client_secret = '36tXSJFZFL9WvpQEx0Xtcz8Tjzg='
+    # client_secret = '36tXSJFZFL9WvpQEx0Xtcz8Tjzg='
+    client_secret = environ.get('SECRET_KEY')
 
     access_token_url = 'https://tc.authentication.eu10.hana.ondemand.com/oauth/token'
 
