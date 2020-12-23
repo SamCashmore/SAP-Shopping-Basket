@@ -23,7 +23,7 @@ def auth():
     client_id = environ.get('SECRET_ID')
     client_secret = environ.get('SECRET_KEY')
 
-    access_token_url = 'https://tc.authentication.eu10.hana.ondemand.com/oauth/token'
+    access_token_url = environ.get('ACCESS_TOKEN_URL')
 
 
     client = BackendApplicationClient(client_id=client_id)
@@ -39,7 +39,7 @@ def get_quantity_from_api(product_id):
 
     client_id = environ.get('SECRET_ID')
 
-    base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
+    base_url = environ.get('BASE_URL')
     extension_url = '/availableToSell'
     url = base_url + extension_url
 
@@ -103,7 +103,7 @@ def get_sourcing(product_id, quantity, postcode):
     '''
     client_id = environ.get('SECRET_ID')
 
-    base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
+    base_url = environ.get('BASE_URL')
     extension_url = '/sourcing'
     url = base_url + extension_url
 
@@ -141,7 +141,7 @@ def post_reservation(product_id, quantity, postcode='TW14 8HD'):
     '''
     client_id = environ.get('SECRET_ID')
 
-    base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
+    base_url = environ.get('BASE_URL')
     extension_url = '/reservations'
     url = base_url + extension_url
 
@@ -184,7 +184,7 @@ def get_reservations():
     '''
     client_id = environ.get('SECRET_ID')
 
-    base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
+    base_url = environ.get('BASE_URL')
     extension_url = '/reservations'
     url = base_url + extension_url
 
