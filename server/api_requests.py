@@ -20,7 +20,7 @@ def auth():
     Returns access token
     '''
 
-    client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
+    client_id = environ.get('SECRET_ID')
     client_secret = environ.get('SECRET_KEY')
 
     access_token_url = 'https://tc.authentication.eu10.hana.ondemand.com/oauth/token'
@@ -37,7 +37,7 @@ def get_quantity_from_api(product_id):
     Number of items available to sell
     '''
 
-    client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
+    client_id = environ.get('SECRET_ID')
 
     base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
     extension_url = '/availableToSell'
@@ -101,7 +101,7 @@ def get_sourcing(product_id, quantity, postcode):
               "sourceType": 
             }
     '''
-    client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
+    client_id = environ.get('SECRET_ID')
 
     base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
     extension_url = '/sourcing'
@@ -139,7 +139,7 @@ def post_reservation(product_id, quantity, postcode='TW14 8HD'):
     Use sourcing info to reserve product for 30mins according to API
     Includes default postcode, SAP CHP
     '''
-    client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
+    client_id = environ.get('SECRET_ID')
 
     base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
     extension_url = '/reservations'
@@ -182,7 +182,7 @@ def get_reservations():
     '''
     Use sourcing info to get list of all reservations
     '''
-    client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
+    client_id = environ.get('SECRET_ID')
 
     base_url = 'https://cpfs-dtrt-trial.cfapps.eu10.hana.ondemand.com/v1'
     extension_url = '/reservations'
