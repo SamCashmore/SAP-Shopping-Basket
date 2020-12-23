@@ -3,6 +3,7 @@ from api_requests import get_quantity_from_api, post_reservation, get_reservatio
 import os
 
 app = Flask(__name__)
+app.config.from_object('config.DevConfig')
 
 port = int(os.environ.get('PORT', 3000))
 

@@ -11,9 +11,6 @@ File getting data from API using OAuth2 authentication
 https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html
 '''
 
-basedir = path.abspath(path.dirname(__file__))
-load_dotenv(path.join(basedir, '.env'))
-
 def auth():
     '''
     OAuth2 authentication - gets tokens using hard-coded ids and keys
