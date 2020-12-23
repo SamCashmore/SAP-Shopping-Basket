@@ -21,7 +21,6 @@ def auth():
     '''
 
     client_id = 'sb-dd3064df-4097-411b-b32d-8cf83284e7fb!b59789|customer-order-sourcing-trial!b20218'
-    # client_secret = '36tXSJFZFL9WvpQEx0Xtcz8Tjzg='
     client_secret = environ.get('SECRET_KEY')
 
     access_token_url = 'https://tc.authentication.eu10.hana.ondemand.com/oauth/token'
