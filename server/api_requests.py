@@ -148,6 +148,7 @@ def post_reservation(product_id, quantity, postcode='TW14 8HD'):
 
     body = [
         {
+            "includedInAvailabilityRawDataOnNextDataUpdate": True,
             "items": [
                 {
                     "productId": product_id,
